@@ -65,12 +65,12 @@ export interface FeedCardContent {
   picURL: string
 }
 
-interface DingtalkResult {
+export interface DingtalkResult {
   errcode: number
   errmsg: string
 }
 
-enum Types {
+export enum Types {
   TEXT = 'text',
   LINK = 'link',
   MARKDOWN = 'markdown',
@@ -97,11 +97,7 @@ export default class Bot {
       method: 'POST',
       body: JSON.stringify(content),
       headers: { 'Content-Type': 'application/json' },
-    })
-      .then((response) => response.json())
-      .then((result: DingtalkResult) =>
-        result.errcode ? Promise.reject(result) : result
-      )
+    }).then((response) => response.json())
   }
 
   /**
